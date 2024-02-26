@@ -1,0 +1,47 @@
+<div *ngIf="!selectedProduct">    
+    <table style="width:100%;">
+        <tr>
+            <td>
+                <h1>All Products</h1>
+            </td>
+            <td style="text-align:end;">
+                <a class="linktext" routerLink="../addproduct">Add Product <mat-icon>add_to_photos</mat-icon></a>
+            </td>
+        </tr>
+    </table>
+    <!--<button (click)="filter()">Filter</button>-->
+
+    <div *ngIf="clickedOnFilter">
+        <table>
+            <tr>
+                <td><input id="searchText" [(ngModel)]="searchText" placeholder="searchText"></td>
+            </tr>
+        </table>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div>
+        <table id="customers">
+            <tr>
+                <th>Product Name</th>
+                <th>Product Partner</th>
+                <th>Constant</th>
+                <th>Product Type</th>
+                <th>Product Plan</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let product of products">
+                <td>{{product.product_name}}</td>
+                <td>{{product.product_partner}}</td>
+                <td>{{product.constant}}</td>
+                <td>{{product.product_type}}</td>
+                <td>{{product.plan_type}}</td>
+                <td><button (click)="setProduct(product)">More Info</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<app-product-info [product]="selectedProduct"></app-product-info>

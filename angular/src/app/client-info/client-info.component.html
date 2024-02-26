@@ -1,0 +1,36 @@
+<div *ngIf="client && !clientDeleted">
+    <h1>{{client.name}} {{client.surname}}</h1>
+
+    <p *ngIf="confirmed">Client updated</p>
+
+    <p>Client ID: <b>{{client.id}}</b></p>
+
+    <p>Name: <b>{{client.name}}</b></p>
+    <button class="realbutton buttonpick" (click)="clickedOnChange(1)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[1]" [(ngModel)]="name" placeholder="Client Name">
+    <button class="repair" *ngIf="changeWhat[1]" (click)="confirm('name')"><mat-icon>build</mat-icon> <b>Confirm</b></button><br/><br/>
+    
+    <p>Surname: <b>{{client.surname}}</b></p>
+    <button class="realbutton buttonpick" (click)="clickedOnChange(2)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[2]" [(ngModel)]="surname" placeholder="Client Surname">
+    <button class="repair" *ngIf="changeWhat[2]" (click)="confirm('surname')"><mat-icon>build</mat-icon> <b>Confirm</b></button><br/><br/>
+    
+    <p>EMSO: <b>{{client.emso}}</b></p>
+    <button class="realbutton buttonpick" (click)="clickedOnChange(3)">Change</button><br/>
+    <input class="form-input" type="number" *ngIf="changeWhat[3]" [(ngModel)]="emso" placeholder="Client EMSO">
+    <div><button class="repair" *ngIf="changeWhat[3]" (click)="confirm('emso')"><mat-icon>build</mat-icon> <b>Confirm</b></button></div>
+    <p *ngIf="checkEmso">ERROR: Not a number</p><br/><br/>
+
+    <p>Address: <b>{{client.address}}</b></p>
+
+    <p>City: <b>{{client.city}}</b></p>
+
+    <p>eMail: <b>{{client.email}}</b></p>
+
+    
+
+
+</div>
+<div *ngIf="client && clientDeleted">
+    <p>This client was deleted.</p>
+</div>

@@ -1,0 +1,37 @@
+<table style="vertical-align:top;width:100%;">
+    <tr style="width:100%;vertical-align:top">
+        <td style="width:50%;vertical-align:top;">
+            <div *ngIf="executedContract">
+                <h1>Executed Contract {{executedContract.contract_id}}</h1>
+
+                <p>Executed Contract ID: <b>{{executedContract.contract_id}}</b></p>
+
+                <p>Product Name: <b>{{executedContract.product.product_name}}</b><br/>
+                    <button class="realbutton buttonpick" (click)="moreInfoProduct()">More Info</button></p>
+
+                <p>User: <b>{{executedContract.user.name}} {{executedContract.user.surname}}</b><br/>
+                    <button class="realbutton buttonpick" (click)="moreInfoUser()">More Info</button></p>
+
+                <p>Client: <b>{{executedContract.client.name}} {{executedContract.client.surname}}</b><br/>
+                    <button class="realbutton buttonpick" (click)="moreInfoClient()">More Info</button></p>
+
+                <p>Date of Payment: <b>{{executedContract.date_of_payment}}</b></p>
+
+                <p>Base Value: <b>{{executedContract.base_value}}</b></p>
+
+                <p>Number of Points: <b>{{executedContract.number_of_points}}</b></p>
+
+                <p>Paid Out: <b>{{executedContract.paid_out}}</b></p>
+
+            </div>
+        </td>
+        <td style="width:500px;"></td>
+        <td style="width:100%;text-align:left;">
+        <div style="border-left:2px solid black;padding-left:5%;" *ngIf="selectedUser || selectedProduct || selectedClient">
+            <app-user-info *ngIf="selectedUser" [user]="selectedUser"></app-user-info>
+            <app-product-info *ngIf="selectedProduct" [product]="selectedProduct"></app-product-info>
+            <app-client-info *ngIf="selectedClient" [client]="selectedClient"></app-client-info>
+        </div>
+        </td>
+    </tr>
+</table>

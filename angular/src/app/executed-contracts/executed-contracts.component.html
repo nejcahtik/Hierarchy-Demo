@@ -1,0 +1,69 @@
+<div *ngIf="!selectedExecutedContract">    
+    <h1>All Executed Contracts</h1>
+    <!--<button (click)="filter()">Filter</button>--><br/><br/>
+
+    
+    <table>
+        <tr>
+            <td>
+                <p>Show contracts from: </p>
+                <mat-form-field appearance="fill">
+                    <input matInput [matDatepicker]="datepicker" [(ngModel)]="dateFrom" placeholder="Select Date From">
+                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker></mat-datepicker>
+                </mat-form-field>
+            </td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>
+                <p>Show contracts to: </p>
+                <mat-form-field appearance="fill">
+                    <input matInput [matDatepicker]="pick" [(ngModel)]="dateTo" placeholder="Select Date To">
+                    <mat-datepicker-toggle matSuffix [for]="pick"></mat-datepicker-toggle>
+                    <mat-datepicker #pick></mat-datepicker>
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+    <div *ngIf="dateFrom && dateTo">
+        <button (click) = "getExecutedContracts()">Show Contracts</button>
+        <div *ngIf="clickedOnFilter">
+            <table>
+                <tr>
+                    <td><input id="searchText" [(ngModel)]="searchText" placeholder="searchText"></td>
+                </tr>
+                <tr>
+                    <td><input id="searchDateFrom" [(ngModel)]="searchText" placeholder="searchDateFrom"></td>
+                    <input id="searchDateTo" [(ngModel)]="searchText" placeholder="searchDateTo">
+                </tr>
+            </table>
+        </div><br/><br/>
+
+        <div>
+            <table id="customers">
+                <tr *ngIf="executedContracts.length != 0">
+                    <th>Contract ID</th>
+                    <th>Product</th>
+                    <th>User</th>
+                    <th>Date of Payment</th>
+                    <th>Base Value</th>
+                    <th>Number of Points</th>
+                    <th>Paid Out</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let executedContract of executedContracts">
+                    <td>{{executedContract.contract_id}}</td>
+                    <td>{{executedContract.product.product_name}}</td>
+                    <td>{{executedContract.user.name}} {{executedContract.user.surname}}</td>
+                    <td>{{executedContract.date_of_payment}}</td>
+                    <td>{{executedContract.base_value}}</td>
+                    <td>{{executedContract.number_of_points}}</td>
+                    <td>{{executedContract.paid_out}}</td>
+                    <td><button (click)="payOut(executedContract)">Pay Out</button></td>
+                    <td><button (click)="setExecutedContract(executedContract)">More Info</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<app-executed-contract-info [executedContract]="selectedExecutedContract"></app-executed-contract-info>

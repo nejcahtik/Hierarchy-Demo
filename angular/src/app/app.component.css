@@ -1,0 +1,47 @@
+.navbar {
+    height:100%;
+    width:250px;
+    background-color:black;
+    vertical-align:top;
+}
+.link {
+    color:white;
+    text-decoration: none;
+    width:100%;
+    font-size:18px;
+}
+.li {
+    width:250px;
+    height:60px;
+    padding-top:30px;
+    padding-bottom:30px;
+    text-align:center;
+    margin-top:100px;
+    bottom:0px;
+    text-align:top;
+    transition: 0.3s;
+}
+.li:hover {
+    background-color:#1E1D3F;
+}
+.table2 {
+    width:250px;
+    vertical-align:middle;
+    text-align:top;
+}
+
+.routeroutlet {
+    vertical-align:top;
+    padding-left:50px;
+    padding-top:100px;
+    width:100%;
+}
+.myapp {
+    color:white;
+    background-color:#0D0B49;
+    height:60px;
+    font-size:30px;
+    text-align:center;
+    vertical-align:middle;
+    padding-top:30px;
+}

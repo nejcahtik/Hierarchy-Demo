@@ -1,0 +1,48 @@
+<div *ngIf="!selectedUser">
+    <table style="width:100%;">
+        <tr>
+            <td>
+                <h1>All Users</h1>
+            </td>
+            <td style="text-align:end;">
+                <a class="linktext" routerLink="../adduser">Add User<mat-icon>add_to_photos</mat-icon></a>
+            </td>
+        </tr>
+
+    </table>
+
+    
+
+    <div *ngIf="clickedOnFilter">
+        <table>
+            <tr>
+                <td><input id="searchText" [(ngModel)]="searchText" placeholder="searchText"></td>
+            </tr>
+        </table>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div>
+        <table id="customers">
+            <tr>
+                <th>Name and Surname</th>
+                <th>Level Number</th>
+                <th>Personal Points</th>
+                <th>Networking Points</th>
+                <th>Total Points</th>
+                <th></th>
+              </tr>
+            <tr *ngFor="let user of users">
+                <td>{{user.name}} {{user.surname}}</td>               
+                <td>{{user.level.level_number}}</td>
+                <td>{{user.personal_points}}</td>
+                <td>{{user.networking_points}}</td>
+                <td>{{user.total_points}}</td>
+                <td><button (click)="setUser(user)">More Info</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<app-user-info [user]="selectedUser"></app-user-info>

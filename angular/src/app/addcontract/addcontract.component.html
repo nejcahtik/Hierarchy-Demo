@@ -1,0 +1,105 @@
+<div *ngIf="selectedUser">
+    <button class="button" (click)="goBackToContract()"><mat-icon>arrow_back</mat-icon></button>
+</div>
+<div *ngIf="!selectedUser">    
+    <h1>Add New Contract</h1>
+
+    <div>
+        <p><b>Product: </b></p><button class="realbutton buttonpick" (click)="showProducts()">Pick Product</button><br/>
+        <div *ngIf="showPrtc">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Partner</th>
+                    <th>Constant</th>
+                    <th>Plan Value</th>
+                </tr>
+                <tr *ngFor="let prtc of products" >
+                    <td>{{prtc.product_name}}</td>
+                    <td>{{prtc.product_partner}}</td>
+                    <td>{{prtc.constant}}</td>
+                    <td>{{prtc.plan_value}}</td>
+                    <td><button class="button" (click)="addThisProduct(prtc)"><mat-icon>add_box</mat-icon></button></td>
+                </tr>
+            </table>
+        </div>
+        <div *ngIf="product">
+            <p>{{product.product_name}}</p>
+        </div><br/>
+        
+        
+        <p><b>User: </b></p><button class="realbutton buttonpick" (click)="showUsers()">Pick User</button>
+        <div *ngIf="showUsrs">
+            <table>
+                <tr>
+                    <th>Name and Surname</th>
+                    <th>Level Number</th>
+                    <th>EMSO</th>
+                </tr>
+                <tr *ngFor="let usr of users" >
+                    <td *ngIf="usr.level">{{usr.name}} {{usr.surname}}</td>
+                    <td *ngIf="usr.level">{{usr.level.level_number}}</td>
+                    <td *ngIf="usr.level">{{usr.emso}}</td>
+                    <td><button class="button" (click)="addThisUser(usr)"><mat-icon>add_box</mat-icon></button></td>
+                    </tr>
+            </table>
+        </div>
+        <div *ngIf="user">
+            <p>{{user.name}} {{user.surname}}</p>
+        </div><br/>
+
+
+        <p><b>Client: </b></p><button class="realbutton buttonpick" (click)="showClients()">Pick Client</button>
+        <div *ngIf="showClnts">
+            <table>
+                <tr>
+                    <th>Name and Surname</th>
+                    <th>EMSO</th>
+                </tr>
+                <tr *ngFor="let clnt of clients">
+                    <td>{{clnt.name}} {{clnt.surname}}</td>
+                    <td>{{clnt.emso}}</td>
+                    <td><button class="button" (click)="addThisClient(clnt)"><mat-icon>add_box</mat-icon></button></td>
+                </tr>
+            </table>
+        </div>
+        <div *ngIf="client">
+            <p>{{client.name}} {{client.surname}}</p>
+        </div><br/>
+
+        <p><b>Date: </b></p>
+        <mat-form-field appearance="fill">
+            <input matInput [matDatepicker]="datepicker" [(ngModel)]="date" placeholder="Select Date of Employment">
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker></mat-datepicker>
+            </mat-form-field><br/>
+        <p><b>Base Value: </b></p><input class="form-input" type="number" id="baseValue" [(ngModel)]="baseValue" placeholder="baseValue"><br/><br/><br/>
+        <p *ngIf="notanumber">ERROR: One of the input data is not in the correct format</p>
+        <p *ngIf="contractAdded">Contract Added</p>
+        <button class="realbutton button2" (click)="addContract()">Add New Contract</button>
+
+        <div *ngIf="responseError">
+            <p><b>These employees have outgrown their mentor and need a new one. They were temporarily given the manager as their mentor: </b></p>
+            <table>
+                <tr>
+                    <th>Name and Surname</th>
+                    <th>Level Number</th>
+                    <th>Personal Points</th>
+                    <th>Networking Points</th>
+                    <th>Total Points</th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let outgrownuser of outgrownusers">
+                    <td>{{outgrownuser.name}} {{outgrownuser.surname}}</td>                
+                    <td>{{outgrownuser.level.level_number}}</td>
+                    <td>{{outgrownuser.personal_points}}</td>
+                    <td>{{outgrownuser.networking_points}}</td>
+                    <td>{{outgrownuser.total_points}}</td>
+                    <td><button class="realbutton buttonpick" (click)="setUser(outgrownuser)">More Info</button></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+<app-user-info [user]="selectedUser"></app-user-info>

@@ -1,0 +1,86 @@
+<h1>Add New User</h1>
+
+<div>
+    
+    <p><b>Name: </b></p><input class="form-input" id="userName" [(ngModel)]="userName" placeholder="userName"><br/>
+    <p><b>Surname: </b></p><input class="form-input" id="userSurname" [(ngModel)]="userSurname" placeholder="userSurname"><br/>
+    <!--<p>Starting Level: </p><button (click)="showLevels()">Pick Level</button>
+    <div *ngIf="showLvls">
+        <table>
+            <tr *ngFor="let lvl of levels" >
+                <td>{{lvl.level_name}}</td>
+                <td>{{lvl.level_number}}</td>
+                <td>{{lvl.points_from}}</td>
+                <td>{{lvl.points_to}}</td>
+                <td>{{lvl.in_eur}}</td>
+                <td><button (click)="addThisLevel(lvl)">Add This Level</button></td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="level">
+        <p>{{level.level_number}} {{level.level_name}}</p>
+    </div><br/>-->
+
+    <p><b>Starting Personal Points: </b></p><input class="form-input" id="personalPoints" type="number" [(ngModel)]="personalPoints" placeholder="personalPoints"><br/>
+    <p><b>Starting Networking Points: </b></p><input class="form-input" id="networkingPoints" type="number" [(ngModel)]="networkingPoints" placeholder="networkingPoints"><br/>
+    <button class="realbutton button2" (click)="get_actual_level()">Calculate Level</button>
+    <div *ngIf="actual_level">
+        <p>Will be in level: <b>{{actual_level.level_number}} {{actual_level.level_name}}</b></p>
+    </div><br/><br/>
+
+    <p><b>Mentor: </b></p><button class="realbutton buttonpick" (click)="showMentors()">Pick Mentor</button><br/><br/>
+
+    <div *ngIf="showMntrs">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Level Number</th>
+                <th>EMSO</th>
+            </tr>
+            <tr *ngFor="let mntr of mentors" >
+                <td *ngIf="mntr.level && level && (mntr.level.level_number > level.level_number || mntr.level.level_number == level.level_number)">{{mntr.name}}</td>
+                <td *ngIf="mntr.level && level && (mntr.level.level_number > level.level_number || mntr.level.level_number == level.level_number)">{{mntr.surname}}</td>
+                <td *ngIf="mntr.level && level && (mntr.level.level_number > level.level_number || mntr.level.level_number == level.level_number)">{{mntr.level.level_number}}</td>
+                <td *ngIf="mntr.level && level && (mntr.level.level_number > level.level_number || mntr.level.level_number == level.level_number)">{{mntr.emso}}</td>
+                <td *ngIf="mntr.level && level && (mntr.level.level_number > level.level_number || mntr.level.level_number == level.level_number)"><button class="button" (click)="addThisMentor(mntr)"><mat-icon>add_box</mat-icon></button></td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="mentor">
+        <p>{{mentor.name}} {{mentor.surname}}</p>
+    </div>
+    <br/><br/>
+    <p><b>Date of Mentorship: </b></p>
+    <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="mentorshipDate" placeholder="Select Date of Mentorship">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    <br/><br/>
+
+    <p><b>Starting Paid Points: </b></p><input class="form-input" id="paidPoints" type="number" [(ngModel)]="paidPoints" placeholder="paidPoints"><br/>
+    <p><b>Starting Cash: </b></p><input class="form-input" id="cash" type="number" [(ngModel)]="cash" placeholder="cash"><br/>
+    <p><b>Paid Cash: </b></p><input class="form-input" id="paidCash" type="number" [(ngModel)]="paidCash" placeholder="paidCash"><br/>
+    <p><b>EMSO: </b></p><input class="form-input" id="emso" type="number" [(ngModel)]="emso" placeholder="emso"><br/>
+    <p><b>Municipality: </b></p><input class="form-input" id="municipality" [(ngModel)]="municipality" placeholder="municipality"><br/>
+    <p><b>Geolocation: </b></p><input class="form-input" id="geolocation" [(ngModel)]="geolocation" placeholder="geolocation"><br/>
+    <p><b>TRR: </b></p><input class="form-input" id="trr" [(ngModel)]="trr" placeholder="trr"><br/>
+    <p><b>Bank: </b></p><input class="form-input" id="bank" [(ngModel)]="bank" placeholder="bank"><br/>
+    <p><b>Date of Employment: </b></p>
+    <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="datepicker" [(ngModel)]="date" placeholder="Select Date of Employment">
+        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker></mat-datepicker>
+    </mat-form-field>
+    <br/><br/><br/>
+    
+    <p *ngIf="userAdded">User Added</p>
+    <p *ngIf="notanumber">ERROR: One of the input data is not in the correct format</p>
+    <button class="realbutton button2" *ngIf="!userAdded" (click)="addUser()">Add New User</button>
+    <button class="realbutton button2" *ngIf="userAdded" (click)="anotherUser()">Add Another User</button>
+<br/>
+<br/>
+<br/>
+<br/>
+</div>

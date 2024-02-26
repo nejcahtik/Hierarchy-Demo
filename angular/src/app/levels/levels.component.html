@@ -1,0 +1,46 @@
+<div *ngIf="!selectedLevel">    
+    <table style="width:100%;">
+        <tr>
+            <td>
+                <h1>All Levels</h1> 
+            </td>
+            <td style="text-align:end;">
+                <a class="linktext" routerLink="../addlevel">Add Level <mat-icon>add_to_photos</mat-icon></a>
+            </td>
+        </tr>
+    </table><br/><br/>
+    <!--<button (click)="filter()">Filter</button>-->
+    
+
+    <div *ngIf="clickedOnFilter">
+        <table>
+            <tr>
+                <td><input id="searchText" [(ngModel)]="searchText" placeholder="searchText"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="customers">
+            <tr>
+                <th>Level Number</th>
+                <th>Level Name</th>
+                <th>Points From</th>
+                <th>Points To</th>
+                <th>In EUR</th>
+                <th></th>
+
+            </tr>
+            <tr *ngFor="let level of levels">
+                <td>{{level.level_number}}</td>
+                <td>{{level.level_name}}</td>
+                <td>{{level.points_from}}</td>
+                <td>{{level.points_to}}</td>
+                <td>{{level.in_eur}}</td>
+                <td><button (click)="setLevel(level)">More Info</button></td>
+            </tr>
+        </table>
+    </div>
+    <p *ngIf="wrongBorderLevel">WARNING: Border points of level {{wrongBorderLevel.level_number}} {{wrongBorderLevel.level_name}} are not set correctly. Adding/changing contracts and users can cause problems. Set border points accordingly"</p>
+</div>
+<app-level-info [level]="selectedLevel"></app-level-info>

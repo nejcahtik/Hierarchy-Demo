@@ -1,0 +1,40 @@
+<div *ngIf="product && !productDeleted">
+    <h1>{{product.product_name}}</h1>
+        
+    <p *ngIf="confirmed">Product updated</p>
+
+    <p>ID: <b>{{product.id}}</b></p>
+    <hr>
+    <p>Product Name: <b>{{product.product_name}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(1)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[1]" [(ngModel)]="name" placeholder="Product Name">
+    <button class="repair" *ngIf="changeWhat[1]" (click)="confirm('name')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <hr>
+    <p>Product Partner: <b>{{product.product_partner}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(2)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[2]" [(ngModel)]="partner" placeholder="Product Partner">
+    <button class="repair" *ngIf="changeWhat[2]" (click)="confirm('partner')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <hr>
+    <p>Constant: <b>{{product.constant}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(3)">Change</button><br/>
+    <input class="form-input" type="number" *ngIf="changeWhat[3]" [(ngModel)]="constant" placeholder="Constant">
+    <button class="repair" *ngIf="changeWhat[3]" (click)="confirm('constant')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <p *ngIf="checkConstant">ERROR: Not a number</p>
+    <hr>
+    <p>Plan Value: <b>{{product.plan_value}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(4)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[4]" [(ngModel)]="planValue" placeholder="Plan Value">
+    <button class="repair" *ngIf="changeWhat[4]" (click)="confirm('plan_value')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <hr>
+    <p>Basic Name: <b>{{product.basic_name}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(5)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[5]" [(ngModel)]="basicName" placeholder="Basic Name">
+    <button class="repair" *ngIf="changeWhat[5]" (click)="confirm('basic_name')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <hr>
+    <p>Plan Type: <b>{{product.plan_type}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(6)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[6]" [(ngModel)]="planType" placeholder="Plan Type">
+    <button class="repair" *ngIf="changeWhat[6]" (click)="confirm('plan_type')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <hr>
+    <p>Product Type: <b>{{product.product_type}}</b></p>
+    <hr>
+    <p>Plan Name: <b>{{product.plan_name}}</b></p>
+
+</div>
+<div *ngIf="product && productDeleted">
+    <p>This product was deleted.</p>
+</div>

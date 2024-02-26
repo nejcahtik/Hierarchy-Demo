@@ -1,0 +1,77 @@
+<div *ngIf="!selectedContract">    
+    <table style="width:100%;">
+        <tr>
+            <td>
+                <h1>All Contracts</h1>
+            </td>
+            <td style="text-align:end">
+                <a class="linktext" routerLink="../addcontract">Add Contract <mat-icon>add_to_photos</mat-icon></a>
+            </td>
+        </tr>
+    </table>
+    <!--<button (click)="filter()">Filter</button>-->
+    <br/><br/><br/>
+    <table>
+        <tr>
+            <td>
+                <p>Show contracts from: </p>
+                <mat-form-field appearance="fill">
+                    <input matInput [matDatepicker]="datepicker" [(ngModel)]="dateFrom" placeholder="Select Date From">
+                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker></mat-datepicker>
+                </mat-form-field>
+            </td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>
+                <p>Show contracts to: </p>
+                <mat-form-field appearance="fill">
+                    <input matInput [matDatepicker]="pick" [(ngModel)]="dateTo" placeholder="Select Date To">
+                    <mat-datepicker-toggle matSuffix [for]="pick"></mat-datepicker-toggle>
+                    <mat-datepicker #pick></mat-datepicker>
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+    <div *ngIf="dateFrom && dateTo">
+        <button (click) = "getContracts()">Show Contracts</button>
+        <div *ngIf="clickedOnFilter">
+            <table>
+                <tr>
+                    <td><input id="searchText" [(ngModel)]="searchText" placeholder="searchText"></td> 
+                </tr>
+                <tr>
+                    <td><input id="searchDateFrom" [(ngModel)]="searchText" placeholder="searchDateFrom"></td>
+                    <input id="searchDateTo" [(ngModel)]="searchText" placeholder="searchDateTo">
+                </tr>
+            </table>
+        </div> <br/><br/>
+
+        <div>
+            <table id="customers">
+                <tr *ngIf="contracts.length != 0">
+                    <th>Contract ID</th>
+                    <th>Product</th>
+                    <th>User</th>
+                    <th>Date of Payment</th>
+                    <th>Base Value</th>
+                    <th>Number of Points</th>
+                    <th>Paid Out</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let contract of contracts">
+                    <td>{{contract.contract_id}}</td>
+                    <td>{{contract.product.product_name}}</td>
+                    <td>{{contract.user.name}} {{contract.user.surname}}</td>
+                    <td>{{contract.date_of_payment}}</td>
+                    <td>{{contract.base_value}}</td>
+                    <td>{{contract.number_of_points}}</td>
+                    <td>{{contract.paid_out}}</td>
+                    <td><button (click)="payOut(contract)">Pay Out</button></td>
+                    <td><button (click)="setContract(contract)">More Info</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<app-contract-info [contract]="selectedContract"></app-contract-info>

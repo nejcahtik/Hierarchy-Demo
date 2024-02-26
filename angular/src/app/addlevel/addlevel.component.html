@@ -1,0 +1,13 @@
+<h1>Add New Level</h1>
+
+<div>
+    <p><b>Level Number: </b></p><input class="form-input" id="levelNumber" type="number" [(ngModel)]="levelNumber" placeholder="levelNumber">
+    <p><b>Level Name: </b></p><input class="form-input" id="levelName" [(ngModel)]="levelName" placeholder="levelName">
+    <p><b>Points From: </b></p><input class="form-input" id="pointsFrom" type="number" [(ngModel)]="pointsFrom" placeholder="pointsFrom">
+    <p><b>Points To: </b></p><input class="form-input" id="pointsTo" type="number" [(ngModel)]="pointsTo" placeholder="pointsTo">
+    <p><b>Value in EUR: </b></p><input class="form-input" id="inEUR" type="number" [(ngModel)]="inEUR" placeholder="inEUR"><br/>
+
+    <p *ngIf="notanumber">ERROR: One of the input data is not in the correct format.</p>
+    <button class="realbutton button2" (click)="addLevel()">Add New Level</button>
+
+</div>

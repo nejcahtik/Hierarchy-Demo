@@ -1,0 +1,44 @@
+<div *ngIf="!selectedClient">
+    <table style="width:100%;">
+        <tr>
+            <td>
+                <h1>All Clients </h1>
+            </td>
+            <td style="text-align:end;">
+                <a class="linktext" routerLink="../addclient"> Add Client <mat-icon>add_to_photos</mat-icon></a>
+            </td>
+        </tr>
+    </table>
+    <!--<button (click)="filter()">Filter</button>-->
+    
+
+    <div *ngIf="clickedOnFilter">
+        <table>
+            <tr>
+                <td><input id="searchClientName" [(ngModel)]="searchText" placeholder="searchClientName"></td>
+            </tr>
+        </table>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <div>
+        <table id="customers">
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>EMSO</th>
+                <th>eMail</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let client of clients">
+                <td>{{client.name}}</td>
+                <td>{{client.surname}}</td>
+                <td>{{client.emso}}</td>
+                <td>{{client.email}}</td>
+                <td><button (click)="setClient(client)">More Info</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<app-client-info [client]="selectedClient"></app-client-info>

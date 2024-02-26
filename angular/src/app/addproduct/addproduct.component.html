@@ -1,0 +1,26 @@
+<h1>Add New Product</h1>
+
+<div>
+    
+    <p><b>Product Name: </b></p><input class="form-input" id="productName" [(ngModel)]="productName" placeholder="productName"><br/>
+    <p><b>Product Partner: </b></p><input class="form-input" id="productPartner" [(ngModel)]="productPartner" placeholder="productPartner"><br/>
+    <p><b>Constant: </b></p><input class="form-input" id="constant" type="number" [(ngModel)]="constant" placeholder="constant"><br/>
+    <p><b>Plan Value: </b></p><input class="form-input" id="planValue" [(ngModel)]="planValue" placeholder="planValue"><br/>
+    <p><b>Basic Name: </b></p><input class="form-input" id="basicName" [(ngModel)]="basicName" placeholder="basicName"><br/>
+    <p><b>Plan Type: </b></p><input class="form-input" id="planType" [(ngModel)]="planType" placeholder="planType"><br/>
+    <p><b>Product Type: </b></p><input class="form-input" id="productType" [(ngModel)]="productType" placeholder="productType"><br/>
+    <p><b>Plan Name: </b></p><input class="form-input" id="planName" [(ngModel)]="planName" placeholder="planName"><br/>
+
+    <!--<input id="bcv" [(ngModel)]="bcv" placeholder="bcv"><br/>
+    <input id="pointsEarned" [(ngModel)]="pointsEarned" placeholder="pointsEarned"><br/>
+    <input id="pointsToBePaid" [(ngModel)]="pointsToBePaid" placeholder="pointsToBePaid"><br/>
+    <input id="pointsForCareer" [(ngModel)]="pointsForCareer" placeholder="pointsForCareer"><br/>
+    <input id="satbppr" [(ngModel)]="satbppr" placeholder="satbppr"><br/>-->
+    <p *ngIf="productAdded">Product Added</p>
+    <p *ngIf="notanumber">ERROR: One of the input data is not in the correct format</p>
+    <button class="realbutton button2" (click)="addProduct()">Add New Product</button>
+    <br/>
+    <br/>
+    <br/>
+
+</div>

@@ -1,0 +1,34 @@
+<table style="vertical-align:top;width:100%;">
+    <tr style="width:100%;vertical-align:top">
+        <td style="width:50%;vertical-align:top;">
+            <div *ngIf="contract">
+                <h1>Contract {{contract.contract_id}}</h1>
+
+                <p>Contract ID: <b>{{contract.contract_id}}</b></p>
+
+                <p>Product Name: <b>{{contract.product.product_name}}</b><br/><button class="realbutton buttonpick" (click)="moreInfoProduct()">More Info</button></p>
+
+                <p>User: <b>{{contract.user.name}} {{contract.user.surname}}</b><br/><button class="realbutton buttonpick" (click)="moreInfoUser()">More Info</button></p><br/>
+
+                <p>Client: <b>{{contract.client.name}} {{contract.client.surname}}</b><br/><button class="realbutton buttonpick" (click)="moreInfoClient()">More Info</button></p>
+
+                <p>Date of Payment: <b>{{contract.date_of_payment}}</b></p>
+
+                <p>Base Value: <b>{{contract.base_value}}</b></p>
+
+                <p>Number of Points: <b>{{contract.number_of_points}}</b></p>
+
+                <p>Paid Out: <b>{{contract.paid_out}}</b><button class="realbutton buttonpick" (click)="payOut()">Pay Out</button></p>
+
+            </div>
+        </td>
+        <td style="width:500px;"></td>
+        <td style="width:100%;text-align:left;">
+        <div style="border-left:2px solid black;padding-left:5%;" *ngIf="selectedUser || selectedProduct || selectedClient">
+            <app-user-info *ngIf="selectedUser" [user]="selectedUser"></app-user-info>
+            <app-product-info *ngIf="selectedProduct" [product]="selectedProduct"></app-product-info>
+            <app-client-info *ngIf="selectedClient" [client]="selectedClient"></app-client-info>
+        </div>
+        </td>
+    </tr>
+</table>

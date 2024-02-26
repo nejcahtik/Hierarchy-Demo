@@ -1,0 +1,96 @@
+
+<div *ngIf="user && !userDeleted">
+    <h1><button class="addmentor" *ngIf="prevUsers.length != 0" (click)="goToPrevUser()"><mat-icon>arrow_back</mat-icon></button>
+        {{user.name}} {{user.surname}}</h1>
+
+    <p *ngIf="confirmed">User updated</p>
+
+    <p>ID: <b>{{user.id}}</b></p>
+    <hr>
+    <p>Name: <b>{{user.name}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(1)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[1]" [(ngModel)]="name" placeholder="Name">
+    <button class="repair" *ngIf="changeWhat[1]" (click)="confirm('name')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <hr>
+    <p>Surname: <b>{{user.surname}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(2)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[2]" [(ngModel)]="surname" placeholder="Surname">
+    <button class="repair" *ngIf="changeWhat[2]" (click)="confirm('surname')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <hr>
+    <p>Mentor: <b>{{user.mentor_name}} {{user.mentor_surname}}</b>&nbsp;&nbsp;&nbsp;<button class="moreinfo" *ngIf="user.mentor_id" (click)="moreInfoMentor()"><mat-icon>info</mat-icon> <b>More Info</b></button></p>
+    <p *ngIf="!user.mentor_id">No mentor</p>
+    <button class="realbutton buttonpick" (click)="showMentors()">Pick Mentor</button><br/>
+    <div *ngIf="showMntrs && user">
+        <table>
+            <tr *ngFor="let mntr of mentors" >
+                <div *ngIf="mntr.level && user.level && (mntr.level.level_number > user.level.level_number || mntr.level.level_number == user.level.level_number) && mntr.id != user.id">
+                    <td>{{mntr.name}}</td>
+                    <td>{{mntr.surname}}</td>
+                    <td>{{mntr.level.level_number}}</td>
+                    <td>{{mntr.emso}}</td>
+                    <td><button class="addmentor" (click)="addThisMentor(mntr)"><mat-icon>add_box</mat-icon></button></td>
+                </div>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <p>Date of Mentorship: <b>{{user.date_of_mentorship}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(4)">Change</button><br/>
+    <div *ngIf="changeWhat[4]">
+        <mat-form-field appearance="fill">
+            <input matInput [matDatepicker]="datepicker" [(ngModel)]="mentorshipDate" placeholder="Select Date">
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker></mat-datepicker>
+            </mat-form-field>
+            <button *ngIf="changeWhat[4]" (click)="confirm('date_of_mentorship')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    </div>
+    <hr>
+
+    <p>Personal Points: <b>{{user.personal_points}}</b></p>
+    <hr>
+    <p>Networking Points: <b>{{user.networking_points}}</b></p>
+    <hr>
+    <p>Total Points: <b>{{user.total_points}}</b></p>
+    <hr>
+    <p>Paid Points: <b>{{user.paid_points}}</b></p>
+    <hr>
+    <p>Cash: <b>{{user.cash}}</b></p>
+    <hr>
+    <p>Paid Cash: <b>{{user.paid_cash}}</b></p>
+    <hr>
+    <p>Level: <b>{{user.level.level_number}}</b></p>
+    <hr>
+    <p>EMSO: <b>{{user.emso}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(12)">Change</button><br/>
+    <input class="form-input" type="number" *ngIf="changeWhat[12]" [(ngModel)]="emso" placeholder="EMSO">
+    <button class="repair" *ngIf="changeWhat[12]" (click)="confirm('emso')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <p *ngIf="checkEmso">ERROR: EMSO needs to be a number.</p>
+    <hr>
+    <p>Municipality: <b>{{user.municipality}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(13)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[13]" [(ngModel)]="municipality" placeholder="Municipality">
+    <button class="repair" *ngIf="changeWhat[13]" (click)="confirm('municipality')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <hr>
+    <p>Geolocation: <b>{{user.geolocation}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(14)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[14]" [(ngModel)]="geolocation" placeholder="Geolocation">
+    <button class="repair" *ngIf="changeWhat[14]" (click)="confirm('geolocation')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <hr>
+    <p>TRR: <b>{{user.trr}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(15)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[15]" [(ngModel)]="trr" placeholder="TRR">
+    <button class="repair" *ngIf="changeWhat[15]" (click)="confirm('trr')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <hr>
+    <p>Bank: <b>{{user.bank}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(16)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[16]" [(ngModel)]="bank" placeholder="Bank">
+    <button class="repair" *ngIf="changeWhat[16]" (click)="confirm('bank')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <hr>
+    <p>Employment Contract Date: <b>{{user.employment_contract_date}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(17)">Change</button><br/>
+    <div *ngIf="changeWhat[17]">
+        <mat-form-field appearance="fill">
+            <input matInput [matDatepicker]="datepicker" [(ngModel)]="employmentDate" placeholder="Select Date">
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker></mat-datepicker>
+            </mat-form-field>
+            <button *ngIf="changeWhat[17]" (click)="confirm('employment_contract_date')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    </div>
+    <p *ngIf="checkEmploymentDate">ERROR: Not a date</p>
+</div>
+<div *ngIf="user && userDeleted">
+    <p>User was deleted</p>
+</div>
+<br/><br/>
+<br/><br/><br/><br/>

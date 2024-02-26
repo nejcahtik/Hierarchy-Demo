@@ -1,0 +1,38 @@
+<div *ngIf="level && !levelDeleted">
+    <h1>{{level.level_name}}, {{level.level_number}}</h1>
+
+    <p *ngIf="confirmed">Level updated</p>
+
+    <p>Level ID: <b>{{level.level_id}}</b></p><br/>
+
+    <p>Level Number: <b>{{level.level_number}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(1)">Change</button><br/>
+    <input class="form-input" type="number" *ngIf="changeWhat[1]" [(ngModel)]="levelNumber" placeholder="Level Number">
+    <button class="repair" *ngIf="changeWhat[1]" (click)="confirm('level_number')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <p *ngIf="checkLevelNumber">ERROR: Not a number</p><br/><br/>
+
+    
+    <p>Level Name: <b>{{level.level_name}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(2)">Change</button><br/>
+    <input class="form-input" *ngIf="changeWhat[2]" [(ngModel)]="name" placeholder="Level Name">
+    <button class="repair" *ngIf="changeWhat[2]" (click)="confirm('level_name')"><mat-icon>build</mat-icon> <b>Confirm</b></button><br/><br/>
+
+    <p>Points From: <b>{{level.points_from}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(3)">Change</button><br/>
+    <input class="form-input" type="number" *ngIf="changeWhat[3]" [(ngModel)]="pointsFrom" placeholder="Points From">
+    <button class="repair" *ngIf="changeWhat[3]" (click)="confirm('points_from')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <p *ngIf="checkPointsFrom">ERROR: Not a number</p><br/><br/>
+
+
+    <p>Points To: <b>{{level.points_to}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(4)">Change</button><br/>
+    <input class="form-input" type="number" *ngIf="changeWhat[4]" [(ngModel)]="pointsTo" placeholder="Points To">
+    <button class="repair" *ngIf="changeWhat[4]" (click)="confirm('points_to')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <p *ngIf="checkPointsTo">ERROR: Not a number</p><br/><br/>
+
+    <p>Value in EUR: <b>{{level.in_eur}}</b></p><button class="realbutton buttonpick" (click)="clickedOnChange(5)">Change</button><br/>
+    <input class="form-input" type="number" *ngIf="changeWhat[5]" [(ngModel)]="inEUR" placeholder="Value in EUR">
+    <button class="repair" *ngIf="changeWhat[5]" (click)="confirm('in_eur')"><mat-icon>build</mat-icon> <b>Confirm</b></button>
+    <p *ngIf="checkInEur">ERROR: Not a number</p><br/>
+
+
+</div>
+<div *ngIf="level && levelDeleted">
+    <p>This level was deleted.</p>
+</div>
