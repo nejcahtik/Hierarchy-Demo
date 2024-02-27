@@ -19,5 +19,3 @@ povezala Angular aplikacija
 8. Angular aplikacijo odpremo v cmd-ju z ukazom ng serve  --open
 
 9. Odpre se aplikacija, kjer lahko dodajamo uporabnike/kliente/produkte/levele/pogodbe
-
-Ni še vse stestirano, tako da upam, da ni preveč hroščev
